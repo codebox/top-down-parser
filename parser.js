@@ -9,7 +9,10 @@ function buildParser(grammar, startSymbol = 'START', epsilon = 'ε') {
             if (substitutions.some(s => s[0] === symbol)) {
                 throw new Error('Left-recursion detected in grammar');
             }
-            symbols[symbol] = substitutions;
+            if (!symbols[symbol]) {
+                symbols[symbol] = [];
+            }
+            symbols[symbol].push(...substitutions);
         }
     });
 

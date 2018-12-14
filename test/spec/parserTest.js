@@ -64,6 +64,35 @@ describe("Parser", function() {
         });
     });
 
+    describe("with grammar containing duplicate symbols on LHS", function() {
+        beforeEach(() => {
+            parser = buildParser(`
+                START -> EXPR
+                EXPR  -> NUM
+                EXPR  -> NUM OP EXPR
+                NUM   -> 0 | 1 | 2 | 3 | 4
+                OP    -> + | - | * | /
+            `);
+        });
+
+        it("should parse composite expression including whitespace", function () {
+            const result = parser.parse('  1 +  2 ');
+
+            expect(result.remainder).toBe('');
+            expect(result.tree).toEqual(
+                {'START' : [
+                    {'EXPR' : [
+                        {'NUM' : ['1']},
+                        {'OP' : ['+']},
+                        {'EXPR' : [
+                            {'NUM' : ['2']},
+                        ]}
+                    ]}
+                ]
+            });
+        });
+    });
+
     describe("with alternate start symbol and epsilon", function() {
         beforeEach(() => {
             parser = buildParser(`
