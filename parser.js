@@ -64,3 +64,8 @@ function buildParser(grammar, startSymbol = 'START', epsilon = 'ε') {
         }
     };
 }
+
+if (typeof exports === 'undefined') {
+    var exports = {};
+}
+exports.buildParser = buildParser;

@@ -1,0 +1,20 @@
+{
+  "name": "top-down-parser",
+  "version": "1.0.0",
+  "description": "A simple top-down parser",
+  "main": "parser.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codebox/top-down-parser"
+  },
+  "keywords": [
+    "parser",
+    "parsing"
+  ],
+  "author": "Rob Dawson <rob@codebox.net> (https://codebox.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codebox/top-down-parser/issues"
+  },
+  "homepage": "https://github.com/codebox/top-down-parser"
+}
