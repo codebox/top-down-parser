@@ -31,7 +31,7 @@ function buildParser(grammar, startSymbol = 'START', epsilon = 'ε') {
                 } else if (symbols[part]){
                     const result = consume(remainder, part);
                     if (result) {
-                        remainder = result.remainder;
+                        remainder = result.remainder.trim();
                         tree[symbol].push(result.tree);
                         return true;
 
@@ -40,7 +40,7 @@ function buildParser(grammar, startSymbol = 'START', epsilon = 'ε') {
                     }
 
                 } else if (remainder.indexOf(part) === 0) {
-                    remainder = remainder.substr(part.length);
+                    remainder = remainder.substr(part.length).trim();
                     tree[symbol].push(part);
                     return true;
 

@@ -129,4 +129,32 @@ describe("Parser", function() {
             `)).toThrow();
         });
     });
+
+    describe("with alternative containing spaces", function() {
+        it("should parse correctly", function () {
+            const parser = buildParser(`
+                START   -> PARTS
+                PARTS   -> PART PARTS | ε 
+                PART    -> A | B C | D
+            `);
+
+            const result = parser.parse('A B C D');
+            expect(result.remainder).toBe('');
+
+            expect(result.tree).toEqual({
+                'START': [
+                    {'PARTS': [
+                        {'PART' : ['A']},
+                        {'PARTS': [
+                            {'PART' : ['B', 'C']},
+                            {'PARTS': [
+                                {'PART' : ['D']},
+                                {'PARTS': ['ε']}
+                            ]}
+                        ]}
+                    ]}
+                ]
+            });
+        });
+    });
 });

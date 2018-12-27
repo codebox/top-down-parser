@@ -1,6 +1,6 @@
 {
   "name": "top-down-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple top-down parser",
   "main": "parser.js",
   "repository": {
